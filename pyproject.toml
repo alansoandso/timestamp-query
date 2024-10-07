@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "timestamp-query"
+version = "1.1.1"
+description = ""
+authors = ["Alan <alan.so@sky.uk>"]
+readme = "README.md"
+packages = [{ include = "timestamp_query" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+plutus = { path = "../plutus/", develop = true }
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+pytest-mock = "^3.11.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+tq = "timestamp_query.tq:command_line_runner"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[tool.pyright]
+exclude = [
+  "**/site-packages/**",
+  ".vscode/*.py",
+  "**/.venv/**",
+  "**/.tox/**",
+  "**/build/**",
+  "*.coveragerc",
+]
