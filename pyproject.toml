@@ -1,28 +1,32 @@
-[tool.poetry]
+[project]
 name = "timestamp-query"
 version = "1.1.1"
 description = ""
-authors = ["Alan <alan.so@sky.uk>"]
+authors = [{ name = "Alan", email = "alan.so@sky.uk" }]
+requires-python = ">=3.13,<4"
 readme = "README.md"
-packages = [{ include = "timestamp_query" }]
+dependencies = ["plutus"]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-plutus = { path = "../plutus/", develop = true }
+[project.scripts]
+tq = "timestamp_query.tq:command_line_runner"
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^7.4.0"
-pytest-cov = "^4.1.0"
-pytest-mock = "^3.11.1"
+[dependency-groups]
+dev = ["pytest>=7.4.0,<8", "pytest-cov>=4.1.0,<5", "pytest-mock>=3.11.1,<4"]
 
+[tool.uv]
+
+[tool.uv.sources]
+plutus = { path = "../plutus/", editable = true }
+
+[tool.hatch.build.targets.sdist]
+include = ["timestamp_query"]
+
+[tool.hatch.build.targets.wheel]
+include = ["timestamp_query"]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-
-[tool.poetry.scripts]
-tq = "timestamp_query.tq:command_line_runner"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.pytest.ini_options]
 pythonpath = ["."]

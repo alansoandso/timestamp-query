@@ -11,28 +11,17 @@ usage: tq [<time in seconds or milliseconds since epoch>]
 ## Dependencies
 
 - Python3
-- Poetry
-- zsh complete
+- UV
 
 ## Installing
-
 **Development Installation**
 
-    poetry install
-    poetry update
+    # If you want to synchronize your environment – and ensure it matches the lock file – use the --sync option.
+    uv sync
 
     # Add globally
-    pipx install -e .
-
-    # If you want to synchronize your environment – and ensure it matches the lock file – use the --sync option.
-    poetry install --sync
-
-**Testing**
-
-    poetry shell
-    pytest -v 
+    uv tool install -e .
 
 **Uninstalling**
-
-    pipx uninstall timestamp-query
+    uv tool uninstall timestamp-query
 
